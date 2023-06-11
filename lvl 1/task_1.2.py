@@ -78,5 +78,10 @@ print('Три случайные песни', first_song2, ',' , second_song2, '
 # Пункт D.
 # Переведите минуты и секунды в формат времени. Используйте модуль datetime 
 
+# решение пункт D
 
+time_of_songs_in_sec = (((time_of_songs * 100) // 100) * 60) + ((time_of_songs * 100) % 100)
 
+import datetime
+time_format = str(datetime.timedelta(seconds=time_of_songs))
+print('Три случайные песни в формате datetime звучат:', time_format)
