@@ -30,31 +30,32 @@
 
 # создание таблицы Students
 
-import sqlite3
+# import sqlite3
 
-connection = sqlite3.connect('teachers.db')
-cursor = connection.cursor()
-query = '''CREATE TABLE Students (
-    Student_Id INTEGER,
-    Student_Name TEXT,
-    School_Id INTEGER PRIMATY KEY)'''
-cursor.execute(query)
-connection.commit()
-connection.close()
+# connection = sqlite3.connect('teachers.db')
+# cursor = connection.cursor()
+# query = '''CREATE TABLE Students (
+#     Student_Id INTEGER,
+#     Student_Name TEXT,
+#     School_Id INTEGER PRIMATY KEY)'''
+# cursor.execute(query)
+# connection.commit()
+# connection.close()
 
 # наполнение таблицы
+# import sqlite3
 
-connection = sqlite3.connect('teachers.db')
-cursor = connection.cursor()
-query = '''INSERT INTO Students (Student_Id , Student_Name , School_Id)
-VALUES
-('201', 'Иван', '1'),
-('202', 'Петр', '2'),
-('203', 'Анастасия', '3'),
-('204', 'Игорь', '4')'''
-cursor.execute(query)
-connection.commit()
-connection.close()
+# connection = sqlite3.connect('teachers.db')
+# cursor = connection.cursor()
+# query = '''INSERT INTO Students (Student_Id , Student_Name , School_Id)
+# VALUES
+# ('201', 'Иван', '1'),
+# ('202', 'Петр', '2'),
+# ('203', 'Анастасия', '3'),
+# ('204', 'Игорь', '4')'''
+# cursor.execute(query)
+# connection.commit()
+# connection.close()
 
 
 
@@ -74,9 +75,9 @@ def get_student_data(student_id):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        query = 'SELECT * FROM Students JOIN School ON Students.School_Id = School.School_Id WHERE Students.School_Id = ?'
+        query = 'SELECT * FROM Students JOIN School ON Students.School_Id = School.School_Id WHERE Students.Student_Id = ?'
         cursor.execute(query,(student_id,))
-        records = cursor.fetchall()
+        records = cursor.fetchmany()
         for row in records:
             print("Id студента:", row[0])
             print("Имя студента:", row[1])
@@ -87,5 +88,5 @@ def get_student_data(student_id):
     except (Exception, sqlite3.Error) as error:
         print('Ошибка в получении данных ', error)
 
-get_student_data(2)
+get_student_data(201)
  
